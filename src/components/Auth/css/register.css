@@ -1,0 +1,12 @@
+.wrap-link {
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #92929D;
+}
+
+.link-page {
+  color: #5ba525;
+  text-decoration: underline;
+}
