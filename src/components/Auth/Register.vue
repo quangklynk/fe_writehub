@@ -91,7 +91,7 @@ export default {
         email: "",
         password: "",
         name: "",
-        birth: "",
+        birth: new Date(),
         address: "",
         idRole: 2,
       },
@@ -145,6 +145,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          this.ruleForm.birth = this.fixDate(this.ruleForm.birth);
           axios
             .post("register", this.ruleForm)
             .then((result) => {
@@ -158,6 +159,19 @@ export default {
           return false;
         }
       });
+    },
+    fixDate(date) {
+      let dd = date.getDate();
+      let mm = date.getMonth() + 1;
+
+      let yyyy = date.getFullYear();
+      if (dd < 10) {
+        dd = "0" + dd;
+      }
+      if (mm < 10) {
+        mm = "0" + mm;
+      }
+      return (date = yyyy + "-" + mm + "-" + dd);
     },
   },
   created() {},
