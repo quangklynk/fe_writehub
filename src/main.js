@@ -7,9 +7,11 @@ import "element-ui/lib/theme-chalk/index.css";
 import router from './router'
 // Axios
 import './axios'
+// Lang EN
+import locale from 'element-ui/lib/locale/lang/en.js'
 
 Vue.config.productionTip = false;
-Vue.use(ElementUI);
+Vue.use(ElementUI, { locale });
 
 new Vue({
   router,
