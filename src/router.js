@@ -16,6 +16,12 @@ import Menu from './components/Menu/Index.vue';
 // Teacher
 import Teacher from './components/Menu/Teacher/Index.vue';
 
+// Role
+import Role from './components/Menu/Role/Index.vue';
+
+// Post
+import Post from './components/Menu/Post/Index.vue';
+
 
 Vue.use(Router);
 
@@ -33,8 +39,12 @@ const router = new Router({
         {
             path: '/menu', component: Menu, children: [
                 { path: '/menu/teacher', component: Teacher, },
+                { path: '/menu/role', component: Role},
+                { path: '/menu/post', component: Post},
             ]
         },
+
+        
 
         { path: '/404', name: 'errorpage', component: Error },//token, user
         { path: '*', redirect: '/404' }
