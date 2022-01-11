@@ -14,57 +14,32 @@
 
     <el-container>
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-        <el-menu>
-          <el-submenu index="1">
+        <el-menu text-color="#171725" active-text-color="#5BA525">
+          <el-menu-item index="1">
+            <i class="el-icon-message"></i><span> Dashboard </span>
+          </el-menu-item>
+          <el-menu-item index="2">
+            <i class="el-icon-message"></i><span> Activity </span>
+          </el-menu-item>
+          <el-menu-item index="3">
+            <i class="el-icon-message"></i><span> Challenges </span>
+          </el-menu-item>
+
+          <el-submenu index="4">
             <template slot="title"
-              ><i class="el-icon-message"></i>Navigator One</template
-            >
-            <el-menu-item-group>
-              <template slot="title">Group 1</template>
-              <el-menu-item index="1-1">Option 1</el-menu-item>
-              <el-menu-item index="1-2">Option 2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group 2">
-              <el-menu-item index="1-3">Option 3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template slot="title">Option4</template>
-              <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-submenu index="2">
-            <template slot="title"
-              ><i class="el-icon-menu"></i>Navigator Two</template
-            >
-            <el-menu-item-group>
-              <template slot="title">Group 1</template>
-              <el-menu-item index="2-1">Option 1</el-menu-item>
-              <el-menu-item index="2-2">Option 2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group 2">
-              <el-menu-item index="2-3">Option 3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="2-4">
-              <template slot="title">Option 4</template>
-              <el-menu-item index="2-4-1">Option 4-1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-submenu index="3">
-            <template slot="title"
-              ><i class="el-icon-setting"></i>Navigator Three</template
+              ><i class="el-icon-setting"></i>Settings</template
             >
             <el-menu-item-group>
               <template slot="title">Group 1</template>
               <el-menu-item index="3-1">Option 1</el-menu-item>
               <el-menu-item index="3-2">Option 2</el-menu-item>
             </el-menu-item-group>
-            <el-menu-item-group title="Group 2">
-              <el-menu-item index="3-3">Option 3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="3-4">
-              <template slot="title">Option 4</template>
-              <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
-            </el-submenu>
+            <router-link to="/menu/teacher">
+              <el-menu-item index="3-3">Teacher</el-menu-item>
+            </router-link>
+            <router-link to="/menu/role">
+              <el-menu-item index="3-4">Roles</el-menu-item>
+            </router-link>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -88,9 +63,10 @@ export default {
 
 <style>
 .el-header {
-  background-color: #b3c0d1;
-  color: #333;
+  background-color: #ffffff;
+  color: #171725;
   line-height: 60px;
+  box-shadow: inset 0px -1px 0px #e2e2ea;
 }
 
 .el-aside {
