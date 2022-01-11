@@ -29,11 +29,12 @@
             <template slot="title"
               ><i class="el-icon-setting"></i>Settings</template
             >
-            <el-menu-item-group>
-              <template slot="title">Group 1</template>
-              <el-menu-item index="3-1">Option 1</el-menu-item>
-              <el-menu-item index="3-2">Option 2</el-menu-item>
-            </el-menu-item-group>
+            <router-link to="/menu/type">
+              <el-menu-item index="3-1">Type</el-menu-item>
+            </router-link>
+            <router-link to="/menu/category">
+              <el-menu-item index="3-2">Category</el-menu-item>
+            </router-link>
             <router-link to="/menu/teacher">
               <el-menu-item index="3-3">Teacher</el-menu-item>
             </router-link>

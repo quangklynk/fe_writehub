@@ -6,19 +6,33 @@
       <el-table-column prop="idUser" label="IDUser"> </el-table-column>
       <el-table-column prop="birth" label="Birth"> </el-table-column>
       <el-table-column prop="address" label="Address"> </el-table-column>
-      <el-table-column prop="created_at" label="created_at"> </el-table-column>
-      <el-table-column prop="updated_at" label="updated_at"> </el-table-column>
-      <el-table-column fixed="right" label="Operations">
+      <el-table-column prop="created_at" label="created_at">
+        <template slot-scope="scope">
+          {{ scope.row.created_at | formatDate }}
+        </template>
+      </el-table-column>
+      <el-table-column prop="updated_at" label="updated_at">
+        <template slot-scope="scope">
+          {{ scope.row.updated_at | formatDate }}
+        </template>
+      </el-table-column>
+      <!-- <el-table-column fixed="right" label="Operations">
         <template slot-scope="scope">
           <el-button
-            @click="deleteRow(scope.$index, tableData)"
+            type="text"
+            size="small"
+            @click="handleEdit(scope.$index, scope.row)"
+            >Edit</el-button
+          >
+          <el-button
+            @click="deleteRow(scope.$index, teachers)"
             type="text"
             size="small"
           >
             Remove
           </el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
   </div>
 </template>
