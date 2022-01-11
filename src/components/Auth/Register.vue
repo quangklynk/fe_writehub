@@ -146,6 +146,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.ruleForm.birth = this.fixDate(this.ruleForm.birth);
+          console.log(this.ruleForm);
           axios
             .post("register", this.ruleForm)
             .then((result) => {

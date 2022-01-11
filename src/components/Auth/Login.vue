@@ -104,6 +104,7 @@ export default {
             .then((result) => {
               console.log(result);
               localStorage.setItem("token", result.data.token.accessToken);
+              alert("ok");
             })
             .catch((err) => {
               console.log(err);
