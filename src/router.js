@@ -10,6 +10,13 @@ import Register from './components/Auth/Register.vue';
 import MenuLogin from './components/Auth/Index.vue';
 import Forgot from './components/Auth/Forgot.vue';
 
+// Menu
+import Menu from './components/Menu/Index.vue';
+
+// Teacher
+import Teacher from './components/Menu/Teacher/Index.vue';
+
+
 Vue.use(Router);
 
 const router = new Router({
@@ -20,6 +27,12 @@ const router = new Router({
                 { path: '/', component: Login, },
                 { path: '/forgot', component: Forgot, },
                 { path: '/register', component: Register, },
+            ]
+        },
+
+        {
+            path: '/menu', component: Menu, children: [
+                { path: '/menu/teacher', component: Teacher, },
             ]
         },
 
