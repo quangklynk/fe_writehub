@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="teachers" style="width: 100%" max-height="100vh" border>
+    <el-table :data="students" style="width: 100%" max-height="100vh" border>
       <el-table-column fixed prop="id" label="ID" width="50px" align="center">
       </el-table-column>
       <el-table-column prop="name" label="Name"> </el-table-column>
@@ -24,11 +24,6 @@
       <el-table-column prop="updated_at" label="updated_at">
         <template slot-scope="scope">
           {{ scope.row.updated_at | formatDate }}
-        </template>
-      </el-table-column>
-      <el-table-column prop="user.flag" label="Status" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.user.flag == 0 ? "Active" : "Leave" }}
         </template>
       </el-table-column>
       <el-table-column fixed="right" label="Operations">
@@ -65,24 +60,18 @@
 <script>
 import axios from "axios";
 export default {
-  name: "Teacher",
+  name: "Student",
   data() {
     return {
-      teachers: [],
+      students: [],
     };
   },
   methods: {
-    getAllTeacher() {
+    getAllStudent() {
       axios
-        .get("teacher")
+        .get("student")
         .then((result) => {
-          this.teachers = result.data.data;
-
-          this.teachers.forEach((element) => {
-            element.user.role = element.user.idRole == 1 ? "admin" : "teacher";
-          });
-
-          console.log(this.teachers);
+          this.students = result.data.data;
         })
         .catch((err) => {
           console.log(err);
@@ -108,7 +97,7 @@ export default {
         .then((result) => {
           if (result.isConfirmed) {
             axios
-              .delete(`teacher/${row.idUser}`)
+              .delete(`student/${row.idUser}`)
               .then((res) => {
                 console.log(res);
                 if (!res.data.error) {
@@ -152,7 +141,7 @@ export default {
         .then((result) => {
           if (result.isConfirmed) {
             axios
-              .patch(`teacher/${row.idUser}/revert`)
+              .patch(`student/${row.idUser}/revert`)
               .then((res) => {
                 console.log(res);
                 if (!res.data.error) {
@@ -179,11 +168,11 @@ export default {
 
     handleEdit(row) {
       console.log(row.id);
-      this.$router.push({ path: `/menu/teacher/${row.id}` });
+      this.$router.push({ path: `/menu/student/${row.id}` });
     },
   },
   async created() {
-    this.getAllTeacher();
+    this.getAllStudent();
   },
 };
 </script>
