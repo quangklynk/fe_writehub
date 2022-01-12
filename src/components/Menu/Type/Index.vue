@@ -22,13 +22,28 @@
           <el-input v-model="ruleform.name"></el-input>
         </el-form-item>
       </el-form>
-            <!-- navigation button -->
+      <!-- navigation button -->
       <span slot="footer" class="dialog-footer">
         <el-button @click="resetForm('ruleform')">Cancel</el-button>
         <el-button type="primary" @click="addType('ruleform')">Save</el-button>
       </span>
     </el-dialog>
 
+    <!-- Form Edit-->
+    <el-dialog title="Edit type" :visible.sync="dialogFormEdit">
+      <el-form :model="editform" :rules="rules" ref="editform">
+        <el-form-item label="Name" label-width="120px" prop="name">
+          <el-input v-model="editform.name"></el-input>
+        </el-form-item>
+      </el-form>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="resetForm('editform')">Cancel</el-button>
+        <el-button type="primary" @click="updateType('editform')"
+          >Save</el-button
+        >
+      </span>
+    </el-dialog>
     <!-- =========================== Info table ================================ -->
     <el-table :data="type" height="70vh" style="width: 100%" border>
       <el-table-column prop="id" label="ID"> </el-table-column>
@@ -36,7 +51,7 @@
       <el-table-column prop="created_at" label="Created at"> </el-table-column>
       <el-table-column prop="updated_at" label="Updated at"> </el-table-column>
       <el-table-column label="Operations" width="120">
-        <!-- <template slot-scope="scope">
+        <template slot-scope="scope">
           <el-button
             type="text"
             size="small"
@@ -44,13 +59,13 @@
             >Edit</el-button
           >
           <el-button
-            @click.native.prevent="deleteRow(scope.$index, roles, scope.row)"
+            @click.native.prevent="deleteRow(scope.$index, type, scope.row)"
             type="text"
             size="small"
           >
             Remove
           </el-button>
-        </template> -->
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -65,8 +80,12 @@ export default {
       type: [],
 
       dialogFormVisible: false,
+      dialogFormEdit: false,
 
       ruleform: {
+        name: "",
+      },
+      editform: {
         name: "",
       },
 
@@ -131,6 +150,105 @@ export default {
         message: mess,
         type: "success",
       });
+    },
+
+    erroMess() {
+      this.$message.error("Oops, this is a error message.");
+    },
+
+    handleEdit(index, row) {
+      this.dialogFormEdit = true;
+      this.editForm = row;
+      console.log(this.editForm);
+    },
+
+    updateType(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.dialogFormEdit = false;
+          this.$swal
+            .fire({
+              title: "Are you sure?",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, I do",
+            })
+            .then((result) => {
+              if (result.isConfirmed) {
+                axios
+                  .post(`type`, this.editform)
+                  .then((result) => {
+                    console.log(result);
+                    this.$swal({
+                      icon: "success",
+                      title: "Update successful",
+                      showConfirmButton: false,
+                    });
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    this.$swal({
+                      icon: "error",
+                      title: "Error",
+                      text: err,
+                      showConfirmButton: false,
+                    });
+                  });
+              }
+            });
+        } else {
+          return false;
+        }
+      });
+    },
+
+    deleteRow(index, rows, row) {
+      const swalWithBootstrapButtons = this.$swal.mixin({
+        customClass: {
+          confirmButton: "el-button el-button--primary",
+          cancelButton: "el-button el-button--danger",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes, delete it!",
+          // reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            axios
+              .delete(`type/${row.id}`)
+              .then((res) => {
+                console.log(res);
+                if (!res.data.error) {
+                  rows.splice(index, 1);
+                  swalWithBootstrapButtons.fire("Deleted!", "", "success");
+                  this.getAllType();
+                } else {
+                  swalWithBootstrapButtons.fire(
+                    "Cancelled!",
+                    res.data.mess,
+                    "error"
+                  );
+                }
+              })
+              .catch((err) => {
+                swalWithBootstrapButtons.fire("Error~~~", `${err}`, "error");
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === this.$swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire("Cancelled", "", "error");
+          }
+        });
     },
   },
 

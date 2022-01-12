@@ -26,6 +26,9 @@ import Role from "./components/Menu/Role/Index.vue";
 // Post
 import Post from "./components/Menu/Post/Index.vue";
 
+// Type
+import Type from "./components/Menu/Type/Index.vue";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -54,6 +57,7 @@ const router = new Router({
 
         { path: "/menu/role", component: Role },
         { path: "/menu/post", component: Post },
+        { path: "/menu/type", component: Type },
       ],
     },
 
