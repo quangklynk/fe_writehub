@@ -15,8 +15,10 @@ import Menu from "./components/Menu/Index.vue";
 
 // Teacher
 import Teacher from "./components/Menu/Teacher/Index.vue";
-import AddTeacher from "./components/Menu/Teacher/AddTeacher.vue";
 import ItemTeacher from "./components/Menu/Teacher/Item.vue";
+
+// Teacher
+import Student from "./components/Menu/Student/Index.vue";
 
 // Role
 import Role from "./components/Menu/Role/Index.vue";
@@ -45,8 +47,10 @@ const router = new Router({
       children: [
         // Teacher
         { path: "/menu/teacher", component: Teacher },
-        { path: "/menu/teacher/add", component: AddTeacher },
         { path: "/menu/teacher/:id", component: ItemTeacher },
+
+        // Student
+        { path: "/menu/student", component: Student },
 
         { path: "/menu/role", component: Role },
         { path: "/menu/post", component: Post },
