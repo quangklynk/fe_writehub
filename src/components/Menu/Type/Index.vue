@@ -158,8 +158,8 @@ export default {
 
     handleEdit(index, row) {
       this.dialogFormEdit = true;
-      this.editForm = row;
-      console.log(this.editForm);
+      this.editform = row;
+      console.log(this.editform);
     },
 
     updateType(formName) {
