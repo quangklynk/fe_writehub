@@ -16,12 +16,22 @@ import Menu from "./components/Menu/Index.vue";
 // Teacher
 import Teacher from "./components/Menu/Teacher/Index.vue";
 import ItemTeacher from "./components/Menu/Teacher/Item.vue";
+import AddTeacher from "./components/Menu/Teacher/Add.vue";
 
-// Teacher
+// Student
 import Student from "./components/Menu/Student/Index.vue";
 
 // Role
 import Role from "./components/Menu/Role/Index.vue";
+
+// Courses
+import Courses from "./components/Menu/Courses/Index.vue";
+
+// Category
+import Category from "./components/Menu/Category/Index.vue";
+
+// Status
+import Status from "./components/Menu/Status/Index.vue";
 
 // Post
 import Post from "./components/Menu/Post/Index.vue";
@@ -51,9 +61,19 @@ const router = new Router({
         // Teacher
         { path: "/menu/teacher", component: Teacher },
         { path: "/menu/teacher/:id", component: ItemTeacher },
+        { path: "/menu/add/teacher", component: AddTeacher },
 
         // Student
         { path: "/menu/student", component: Student },
+      
+        // Courses
+        { path: "/menu/courses", component: Courses },
+
+        // Category
+        { path: "/menu/category", component: Category },
+
+        // Status
+        { path: "/menu/status", component: Status },
 
         { path: "/menu/role", component: Role },
         { path: "/menu/post", component: Post },

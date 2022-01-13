@@ -1,20 +1,15 @@
 <template>
+<!-- Thíu số học viên ngày học -->
   <div>
-    <el-table :data="teachers" style="width: 100%" max-height="100vh" border>
+    <el-table :data="courses" style="width: 100%" max-height="100vh" border>
       <el-table-column fixed prop="id" label="ID" width="50px" align="center">
       </el-table-column>
       <el-table-column prop="name" label="Name"> </el-table-column>
-      <el-table-column
-        prop="idUser"
-        label="ID Account"
-        width="100px"
-        align="center"
-      >
+      <el-table-column prop="teacher" label="Teacher">
+        <template slot-scope="scope">
+          {{ "IDTeacher: " + scope.row.teacher.id + " - " +scope.row.teacher.name }}
+        </template>
       </el-table-column>
-      <el-table-column prop="user.email" label="Email"> </el-table-column>
-      <el-table-column prop="birth" label="Birth" width="100px">
-      </el-table-column>
-      <el-table-column prop="address" label="Address"> </el-table-column>
 
       <el-table-column prop="created_at" label="created_at">
         <template slot-scope="scope">
@@ -24,11 +19,6 @@
       <el-table-column prop="updated_at" label="updated_at">
         <template slot-scope="scope">
           {{ scope.row.updated_at | formatDate }}
-        </template>
-      </el-table-column>
-      <el-table-column prop="user.flag" label="Status" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.user.flag == 0 ? "Active" : "Leave" }}
         </template>
       </el-table-column>
       <el-table-column label="Operations">
@@ -41,19 +31,10 @@
             square
           ></el-button>
           <el-button
-            type="success"
-            icon="el-icon-refresh-left"
-            size="mini"
-            square
-            v-if="scope.row.user.flag"
-            @click="reverseRow(scope.$index, scope.row)"
-          ></el-button>
-          <el-button
             type="danger"
             icon="el-icon-delete"
             size="mini"
             square
-            v-else
             @click="deleteRow(scope.$index, scope.row)"
           ></el-button>
         </template>
@@ -65,24 +46,19 @@
 <script>
 import axios from "axios";
 export default {
-  name: "Teacher",
+  name: "course",
   data() {
     return {
-      teachers: [],
+      courses: [],
     };
   },
   methods: {
-    getAllTeacher() {
+    getAllCourse() {
       axios
-        .get("teacher")
+        .get("course")
         .then((result) => {
-          this.teachers = result.data.data;
-
-          this.teachers.forEach((element) => {
-            element.user.role = element.user.idRole == 1 ? "admin" : "teacher";
-          });
-
-          console.log(this.teachers);
+          this.courses = result.data.data;
+          console.log(this.courses);
         })
         .catch((err) => {
           console.log(err);
@@ -108,7 +84,7 @@ export default {
         .then((result) => {
           if (result.isConfirmed) {
             axios
-              .delete(`teacher/${row.idUser}`)
+              .delete(`course/${row.id}`)
               .then((res) => {
                 console.log(res);
                 if (!res.data.error) {
@@ -152,7 +128,7 @@ export default {
         .then((result) => {
           if (result.isConfirmed) {
             axios
-              .patch(`teacher/${row.idUser}/revert`)
+              .patch(`course/${row.idUser}/revert`)
               .then((res) => {
                 console.log(res);
                 if (!res.data.error) {
@@ -179,11 +155,11 @@ export default {
 
     handleEdit(row) {
       console.log(row.id);
-      this.$router.push({ path: `/menu/teacher/${row.id}` });
+      this.$router.push({ path: `/menu/course/${row.id}` });
     },
   },
   async created() {
-    this.getAllTeacher();
+    this.getAllCourse();
   },
 };
 </script>
