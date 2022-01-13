@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap-post">
     <vue-editor v-model="content"></vue-editor>
   </div>
 </template>
@@ -18,5 +18,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.wrap-post{
+  background: #ffff;
+  height: 500px;
+}
 </style>
