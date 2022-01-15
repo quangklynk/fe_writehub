@@ -93,7 +93,6 @@ export default {
         name: "",
         birth: new Date(),
         address: "",
-        idRole: 2,
       },
       rules: {
         email: [

@@ -2,8 +2,10 @@
   <el-container style="height: 100vh; border: 1px solid #eee">
     <el-header style="text-align: right; font-size: 12px">
       <el-dropdown>
-        <i class="el-icon-setting" style="margin-right: 15px"></i>
-        <span>Tom</span>
+        <i class="el-icon-setting">
+          <span style="margin-left: 5px">{{ user }}</span></i
+        >
+
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>View</el-dropdown-item>
           <el-dropdown-item>Add</el-dropdown-item>
@@ -32,7 +34,7 @@
               ><i class="el-icon-setting"></i>Settings</template
             >
 
-            <router-link to="/menu/courses">
+            <router-link to="/menu/course">
               <el-menu-item index="3-1">Courses</el-menu-item>
             </router-link>
             <el-menu-item-group>
@@ -72,12 +74,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Menu",
   data() {
     return {};
   },
   methods: {},
+  computed: {
+    ...mapGetters(["user"]),
+  },
   created() {},
 };
 </script>
@@ -92,5 +98,9 @@ export default {
 
 .el-aside {
   color: #333;
+}
+
+.el-icon-setting {
+  cursor: pointer;
 }
 </style>
