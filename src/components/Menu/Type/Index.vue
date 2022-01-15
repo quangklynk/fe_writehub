@@ -48,8 +48,16 @@
     <el-table :data="type" height="70vh" style="width: 100%" border>
       <el-table-column prop="id" label="ID"> </el-table-column>
       <el-table-column prop="name" label="Name"> </el-table-column>
-      <el-table-column prop="created_at" label="Created at"> </el-table-column>
-      <el-table-column prop="updated_at" label="Updated at"> </el-table-column>
+      <el-table-column prop="created_at" label="Created at">
+        <template slot-scope="scope">
+          {{ scope.row.created_at | formatDate }}
+        </template>
+      </el-table-column>
+      <el-table-column prop="updated_at" label="Updated at">
+        <template slot-scope="scope">
+          {{ scope.row.updated_at | formatDate }}
+        </template>
+      </el-table-column>
       <el-table-column label="Operations" width="120">
         <template slot-scope="scope">
           <el-button
