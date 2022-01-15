@@ -25,6 +25,7 @@
             <el-input
               v-model="ruleForm.email"
               placeholder="Email address"
+              autocomplete="off"
             ></el-input>
           </el-form-item>
 
@@ -33,6 +34,7 @@
               v-model="ruleForm.password"
               type="password"
               placeholder="Enter your password"
+              autocomplete="off"
             ></el-input>
           </el-form-item>
 
@@ -103,11 +105,30 @@ export default {
             .post("login", this.ruleForm)
             .then((result) => {
               console.log(result);
-              localStorage.setItem("token", result.data.token.accessToken);
-              alert("ok");
+              this.$swal({
+                icon: "success",
+                title: "Login successed !!!",
+                showConfirmButton: false,
+              });
+
+              localStorage.setItem("token", result.data.token);
+              this.$store.dispatch("id", result.data.data.user.id);
+              this.$store.dispatch("user", result.data.data.user.name);
+              this.$store.dispatch("role", result.data.data.idRole);
+              // back_up
+              localStorage.setItem("id", result.data.data.user.id);
+              localStorage.setItem("user", result.data.data.user.name);
+              localStorage.setItem("role", result.data.data.idRole);
+
+              this.$router.push({ path: "/menu" });
             })
             .catch((err) => {
               console.log(err);
+              this.$swal({
+                icon: "error",
+                title: err,
+                showConfirmButton: false,
+              });
             });
         } else {
           console.log("error submit!!");

@@ -26,6 +26,8 @@ import Role from "./components/Menu/Role/Index.vue";
 
 // Courses
 import Courses from "./components/Menu/Courses/Index.vue";
+import ItemCourses from "./components/Menu/Courses/Item.vue";
+import AddCourses from "./components/Menu/Courses/Add.vue";
 
 // Category
 import Category from "./components/Menu/Category/Index.vue";
@@ -69,9 +71,11 @@ const router = new Router({
 
         // Student
         { path: "/menu/student", component: Student },
-      
+
         // Courses
-        { path: "/menu/courses", component: Courses },
+        { path: "/menu/course", component: Courses },
+        { path: "/menu/course/item/:id", component: ItemCourses },
+        { path: "/menu/course/add", component: AddCourses },
 
         // Category
         { path: "/menu/category", component: Category },
@@ -93,14 +97,14 @@ const router = new Router({
   ],
 });
 
-// router.beforeEach((to, from, next) => {
-//     const loggedIn = localStorage.getItem('token');
-//     if (to.path == '/forgot' || to.path == '/reset') {
-//         next();
-//     } else if (to.path != '/' && !loggedIn) {
-//         next('/');
-//     }
-//     next();
-// });
+router.beforeEach((to, from, next) => {
+  const loggedIn = localStorage.getItem("token");
+  if (to.path == "/forgot" || to.path == "/reset" || to.path == "/register") {
+    next();
+  } else if (to.path != "/" && !loggedIn) {
+    next("/");
+  }
+  next();
+});
 
 export default router;

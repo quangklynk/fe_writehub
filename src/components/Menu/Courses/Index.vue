@@ -155,7 +155,7 @@ export default {
 
     handleEdit(row) {
       console.log(row.id);
-      this.$router.push({ path: `/menu/course/${row.id}` });
+      this.$router.push({ path: `/menu/course/item/${row.id}` });
     },
   },
   async created() {

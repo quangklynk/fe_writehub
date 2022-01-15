@@ -168,6 +168,7 @@ export default {
                 title: "Update successful",
                 showConfirmButton: false,
               });
+              this.backToExam();
             })
             .catch((err) => {
               this.$swal({
@@ -183,6 +184,10 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+
+    backToExam() {
+      this.$router.push({ path: `/menu/exam` });
     },
   },
 
