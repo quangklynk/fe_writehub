@@ -34,34 +34,37 @@
               ><i class="el-icon-setting"></i>Settings</template
             >
 
-            <router-link to="/menu/course">
-              <el-menu-item index="3-1">Courses</el-menu-item>
+            <router-link to="/menu/courses">
+              <el-menu-item index="4-1">Courses</el-menu-item>
+            </router-link>
+            <router-link to="/menu/exam">
+              <el-menu-item index="4-2">Examination</el-menu-item>
             </router-link>
             <el-menu-item-group>
               <template slot="title">Property Post</template>
               <router-link to="/menu/type">
-                <el-menu-item index="3-2">Type</el-menu-item>
+                <el-menu-item index="4-3">Type</el-menu-item>
               </router-link>
               <router-link to="/menu/category">
-                <el-menu-item index="3-3">Category</el-menu-item>
+                <el-menu-item index="4-4">Category</el-menu-item>
               </router-link>
               <router-link to="/menu/status">
-                <el-menu-item index="3-4">Status</el-menu-item>
+                <el-menu-item index="4-5">Status</el-menu-item>
               </router-link>
             </el-menu-item-group>
 
             <el-menu-item-group>
               <template slot="title">User</template>
               <router-link to="/menu/teacher">
-                <el-menu-item index="3-5">Teacher</el-menu-item>
+                <el-menu-item index="4-6">Teacher</el-menu-item>
               </router-link>
               <router-link to="/menu/student">
-                <el-menu-item index="3-6">Student</el-menu-item>
+                <el-menu-item index="4-7">Student</el-menu-item>
               </router-link>
             </el-menu-item-group>
 
             <router-link to="/menu/role">
-              <el-menu-item index="3-7">Roles</el-menu-item>
+              <el-menu-item index="4-8">Roles</el-menu-item>
             </router-link>
           </el-submenu>
         </el-menu>

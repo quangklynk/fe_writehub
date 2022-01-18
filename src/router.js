@@ -39,6 +39,13 @@ import Status from "./components/Menu/Status/Index.vue";
 // Post
 import Post from "./components/Menu/Post/Index.vue";
 
+// Type
+import Type from "./components/Menu/Type/Index.vue";
+
+// Exam
+import Exam from "./components/Menu/Exam/Index.vue";
+import ExamItem from "./components/Menu/Exam/Item.vue";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -77,9 +84,15 @@ const router = new Router({
 
         // Status
         { path: "/menu/status", component: Status },
-
+        // Role
         { path: "/menu/role", component: Role },
+        // Post
         { path: "/menu/post", component: Post },
+        // Type
+        { path: "/menu/type", component: Type },
+        // Exam
+        { path: "/menu/exam", component: Exam },
+        { path: "/menu/exam/:id", component: ExamItem },
       ],
     },
 
