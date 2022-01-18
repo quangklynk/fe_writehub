@@ -28,6 +28,7 @@ import Role from "./components/Menu/Role/Index.vue";
 import Courses from "./components/Menu/Courses/Index.vue";
 import ItemCourses from "./components/Menu/Courses/Item.vue";
 import AddCourses from "./components/Menu/Courses/Add.vue";
+import ListStudent from "./components/Menu/Courses/ListStudent.vue";
 
 // Category
 import Category from "./components/Menu/Category/Index.vue";
@@ -69,6 +70,7 @@ const router = new Router({
         { path: "/menu/course", component: Courses },
         { path: "/menu/course/item/:id", component: ItemCourses },
         { path: "/menu/course/add", component: AddCourses },
+        { path: "/menu/course/list/:id", component: ListStudent },
 
         // Category
         { path: "/menu/category", component: Category },

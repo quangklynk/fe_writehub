@@ -1,5 +1,5 @@
 <template>
-<!-- Thíu số học viên ngày học -->
+  <!-- Thíu số học viên ngày học -->
   <div>
     <el-table :data="courses" style="width: 100%" max-height="100vh" border>
       <el-table-column fixed prop="id" label="ID" width="50px" align="center">
@@ -7,7 +7,12 @@
       <el-table-column prop="name" label="Name"> </el-table-column>
       <el-table-column prop="teacher" label="Teacher">
         <template slot-scope="scope">
-          {{ "IDTeacher: " + scope.row.teacher.id + " - " +scope.row.teacher.name }}
+          {{
+            "IDTeacher: " +
+            scope.row.teacher.id +
+            " - " +
+            scope.row.teacher.name
+          }}
         </template>
       </el-table-column>
 
@@ -36,6 +41,12 @@
             size="mini"
             square
             @click="deleteRow(scope.$index, scope.row)"
+          ></el-button>
+          <el-button
+            icon="el-icon-s-order"
+            size="mini"
+            square
+            @click="goToList(scope.row)"
           ></el-button>
         </template>
       </el-table-column>
@@ -157,6 +168,11 @@ export default {
       console.log(row.id);
       this.$router.push({ path: `/menu/course/item/${row.id}` });
     },
+
+    goToList(row) {
+      console.log(row.id);
+      this.$router.push({ path: `/menu/course/list/${row.id}` });
+    },
   },
   async created() {
     this.getAllCourse();
@@ -164,5 +180,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

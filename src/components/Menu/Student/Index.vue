@@ -35,20 +35,12 @@
             @click="handleEdit(scope.row)"
             square
           ></el-button>
-          <el-button
-            type="success"
-            icon="el-icon-refresh-left"
-            size="mini"
-            square
-            v-if="scope.row.user.flag"
-            @click="reverseRow(scope.$index, scope.row)"
-          ></el-button>
+
           <el-button
             type="danger"
             icon="el-icon-delete"
             size="mini"
             square
-            v-else
             @click="deleteRow(scope.$index, scope.row)"
           ></el-button>
         </template>
@@ -177,5 +169,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
