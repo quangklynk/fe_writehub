@@ -82,11 +82,13 @@ const router = new Router({
 
         // Status
         { path: "/menu/status", component: Status },
-
+        // Role
         { path: "/menu/role", component: Role },
+        // Post
         { path: "/menu/post", component: Post },
+        // Type
         { path: "/menu/type", component: Type },
-
+        // Exam
         { path: "/menu/exam", component: Exam },
         { path: "/menu/exam/:id", component: ExamItem },
       ],
