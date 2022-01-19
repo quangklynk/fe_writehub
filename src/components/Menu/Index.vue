@@ -34,7 +34,7 @@
               ><i class="el-icon-setting"></i>Settings</template
             >
 
-            <router-link to="/menu/courses">
+            <router-link to="/menu/course">
               <el-menu-item index="4-1">Courses</el-menu-item>
             </router-link>
             <router-link to="/menu/exam">
