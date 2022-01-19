@@ -46,6 +46,9 @@ import Type from "./components/Menu/Type/Index.vue";
 import Exam from "./components/Menu/Exam/Index.vue";
 import ExamItem from "./components/Menu/Exam/Item.vue";
 
+//Grading
+import Grade from "./components/Menu/Grading/Index.vue";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -93,6 +96,9 @@ const router = new Router({
         // Exam
         { path: "/menu/exam", component: Exam },
         { path: "/menu/exam/:id", component: ExamItem },
+
+        //Grading
+        { path: "/menu/grade", component: Grade },
       ],
     },
 
