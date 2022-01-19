@@ -13,7 +13,6 @@
           <el-col :span="12">
             <el-form-item label="Examinations" prop="idExam">
               <el-select
-                @change="changeSelect($event, `type`)"
                 v-model="property_post.idExam"
                 filterable
                 allow-create
@@ -32,19 +31,14 @@
           </el-col>
         </el-row>
       </el-form>
+
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm('property_post')"
+        <el-button type="primary" @click="submitFormExam('property_post')"
           >Confirm</el-button
         >
       </span>
     </el-dialog>
 
-
-    <el-row>
-      <el-col :span="24"
-        ><div class="grid-content bg-purple-dark"></div
-      ></el-col> </el-row
-    ><el-button type="primary" >Submit</el-button>
   </div>
 </template>
 
@@ -52,21 +46,20 @@
 import axios from "axios";
 
 export default {
-
   name: "Marking",
   data() {
     return {
       posts: [],
       exams: [],
-      test:"",
 
       dialogVisible: true,
       set_false: false,
 
+      idTeacher: this.$store.getters.id,
+
       property_post: {
-        idTeacher: this.$store.getters.id,
         idExam: "",
-        dateExam:"",
+        dateExam: "",
       },
 
       rules: {
@@ -77,24 +70,36 @@ export default {
             trigger: "change",
           },
         ],
+
+        dateExam: {
+          required: true,
+          message: "Please select",
+          trigger: "change",
+        },
       },
-
-
-
     };
   },
   methods: {
     getAllProp() {
       // Exam
       axios
-        .get(`exam/teacher/${this.property_post.idTeacher}`)
+        .get(`exam/teacher/${this.idTeacher}`)
         .then((result) => {
           this.exams = result.data.data;
-
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+    submitFormExam(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.dialogVisible = false;
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     },
   },
 
