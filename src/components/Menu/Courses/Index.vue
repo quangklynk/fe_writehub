@@ -1,7 +1,7 @@
 <template>
   <!-- Thíu số học viên ngày học -->
   <div>
-    <el-table :data="courses" style="width: 100%" max-height="100vh" border>
+    <el-table :data="courses" style="width: 100%" max-height="520px" border>
       <el-table-column fixed prop="id" label="ID" width="50px" align="center">
       </el-table-column>
       <el-table-column prop="name" label="Name"> </el-table-column>

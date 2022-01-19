@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="teachers" style="width: 100%" max-height="100vh" border>
+    <el-table :data="teachers" style="width: 100%" max-height="520px" border>
       <el-table-column fixed prop="id" label="ID" width="50px" align="center">
       </el-table-column>
       <el-table-column prop="name" label="Name"> </el-table-column>
@@ -11,27 +11,27 @@
         align="center"
       >
       </el-table-column>
-      <el-table-column prop="user.email" label="Email"> </el-table-column>
+      <el-table-column prop="user.email" label="Email" width="200px"> </el-table-column>
       <el-table-column prop="birth" label="Birth" width="100px">
       </el-table-column>
-      <el-table-column prop="address" label="Address"> </el-table-column>
+      <el-table-column prop="address" label="Address" width="300px"> </el-table-column>
 
-      <el-table-column prop="created_at" label="created_at">
+      <el-table-column prop="created_at" label="created">
         <template slot-scope="scope">
           {{ scope.row.created_at | formatDate }}
         </template>
       </el-table-column>
-      <el-table-column prop="updated_at" label="updated_at">
+      <el-table-column prop="updated_at" label="updated">
         <template slot-scope="scope">
           {{ scope.row.updated_at | formatDate }}
         </template>
       </el-table-column>
-      <el-table-column prop="user.flag" label="Status" align="center">
+      <el-table-column prop="user.flag" label="Status" align="center" width="100px">
         <template slot-scope="scope">
           {{ scope.row.user.flag == 0 ? "Active" : "Leave" }}
         </template>
       </el-table-column>
-      <el-table-column label="Operations">
+      <el-table-column label="Operations"  fixed="right" width="120px">
         <template slot-scope="scope">
           <el-button
             type="primary"
