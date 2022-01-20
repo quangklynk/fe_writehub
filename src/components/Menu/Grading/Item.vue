@@ -5,33 +5,33 @@
         <el-col :span="8"
           >Type :
           <el-tag effect="dark" type="success" size="medium">
-            {{ post[0].type.name }}</el-tag
+            {{ post.type.name }}</el-tag
           >
         </el-col>
         <el-col :span="8"
           >Category :
           <el-tag effect="dark" type="success" size="medium">{{
-            post[0].category.name
+            post.category.name
           }}</el-tag>
         </el-col>
         <el-col :span="8"
           >Status :
           <el-tag effect="dark" type="success" size="medium">
-            {{ post[0].status.name }}</el-tag
+            {{ post.status.name }}</el-tag
           >
         </el-col>
       </el-row>
     </div>
     <br />
     <p class="main-content">
-      {{ post[0].content }}
+      {{ post.content }}
     </p>
 
     <br />
     <div>
       Score:
       <el-input-number
-        v-model="num"
+        v-model="score"
         @change="handleChange"
         :min="1"
         :max="100"
@@ -42,8 +42,9 @@
         size="medium"
         @click="submitScore()"
         square
-        style="margin-left: 10px;"
-      >Submit score</el-button>
+        style="margin-left: 10px"
+        >Submit score</el-button
+      >
     </div>
   </div>
 </template>
@@ -54,7 +55,7 @@ export default {
   name: "GradingItem",
   data() {
     return {
-      num: 1,
+      score: 1,
       post: [],
     };
   },
@@ -77,17 +78,30 @@ export default {
     },
 
     submitScore() {
-      this.post[0].score = this.num;
+      this.post.score = this.score;
       axios
-        .patch(`post/${this.$route.params.id}`, this.post[0])
+        .patch(`post/${this.$route.params.id}`, this.post)
         .then((result) => {
-          this.post = result.data.data;
-          console.log(this.post);
+          console.log(result);
+          this.$swal({
+            icon: "success",
+            title: "Submit successful",
+            showConfirmButton: false,
+          });
+          console.log("id exam:" + this.post.idExam);
+          this.$store.dispatch("idexam", this.post.idExam);
+          localStorage.setItem("idexam", this.post.idExam);
 
-          this.$router.push({ path: `/menu/grade` });
+          this.$router.go(-1);
+          // this.$router.push({ path: `/menu/grade` });
         })
         .catch((err) => {
           console.log(err);
+          this.$swal({
+            icon: "error",
+            title: err,
+            showConfirmButton: false,
+          });
         });
     },
   },

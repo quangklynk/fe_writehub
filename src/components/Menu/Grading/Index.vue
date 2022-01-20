@@ -1,10 +1,22 @@
 <template>
   <div class="wrap-post">
+        <el-row>
+      <el-col :span="24">
+        <el-button-group>
+          <el-button
+            icon="el-icon-circle-plus-outline"
+            type="success"
+            @click="pickExam()"
+            >Choose an examination</el-button
+          >
+        </el-button-group>
+      </el-col>
+    </el-row>
     <el-dialog
       title="Choose your examination to grading"
       :visible.sync="dialogVisible"
       width="40%"
-      :close-on-click-modal="set_false"
+
       :close-on-press-escape="set_false"
       :show-close="set_false"
     >
@@ -95,10 +107,11 @@ export default {
       // 2nd stage
       posts: [],
 
-      dialogVisible: true,
+      dialogVisible: false,
       set_false: false,
 
       idTeacher: this.$store.getters.id,
+      idExam: this.$store.getters.idexam,
 
       property_post: {
         idExam: "",
@@ -144,11 +157,18 @@ export default {
           console.log(err);
         });
     },
+
+    pickExam() {
+      this.dialogVisible = true;
+      this.getAllProp1st();
+    },
+
     submitFormExam(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.dialogVisible = false;
           this.getAllProp2nd();
+          console.log("idExam: " + this.property_post.idExam);
         } else {
           console.log("error submit!!");
           return false;
@@ -160,11 +180,20 @@ export default {
       console.log(row.id);
       this.$router.push({ path: `/menu/grade/${row.id}` });
     },
+
+    checkExistExam() {
+      if(this.idExam){
+        console.log("idexam: " + this.idExam);
+        this.property_post.idExam = this.idExam;
+        this.getAllProp2nd();
+      }
+
+    },
     
   },
 
   created() {
-    this.getAllProp1st();
+    this.checkExistExam();
   },
 };
 </script>
