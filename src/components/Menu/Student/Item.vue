@@ -2,13 +2,13 @@
   <div>
     <div class="wrap-form">
       <el-form
-        :model="teacher"
+        :model="student"
         :rules="rules"
-        ref="teacher"
+        ref="student"
         label-width="120px"
       >
         <el-form-item label="Name" prop="name">
-          <el-input v-model="teacher.name"></el-input>
+          <el-input v-model="student.name"></el-input>
         </el-form-item>
 
         <el-form-item label="Birth" required>
@@ -16,19 +16,19 @@
             <el-date-picker
               type="date"
               placeholder="Pick a date"
-              v-model="teacher.birth"
+              v-model="student.birth"
               style="width: 100%"
             ></el-date-picker>
           </el-form-item>
         </el-form-item>
         <el-form-item label="Address" prop="address">
-          <el-input type="textarea" v-model="teacher.address"></el-input>
+          <el-input type="textarea" v-model="student.address"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="updateTeacher('teacher')"
+          <el-button type="primary" @click="updateStudent('student')"
             >Update</el-button
           >
-          <el-button @click="resetForm('teacher')">Reset</el-button>
+          <el-button @click="resetForm('student')">Reset</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -40,7 +40,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      teacher: {},
+      student: {},
       rules: {
         name: [
           {
@@ -87,24 +87,24 @@ export default {
       }
       return (date = yyyy + "-" + mm + "-" + dd);
     },
-    getTeacherByID() {
+    getStudentByID() {
       axios
-        .get(`teacher/${this.$route.params.id}`)
+        .get(`student/${this.$route.params.id}`)
         .then((result) => {
-          this.teacher = result.data.data;
-          this.teacher.birth = new Date(this.teacher.birth);
+          this.student = result.data.data;
+          this.student.birth = new Date(this.student.birth);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    updateTeacher(formName) {
+    updateStudent(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log(this.teacher);
-          this.teacher.birth = this.fixDate(this.teacher.birth);
+          console.log(this.student);
+          this.student.birth = this.fixDate(this.student.birth);
           axios
-            .patch(`teacher/${this.teacher.id}`, this.teacher)
+            .patch(`student/${this.student.id}`, this.student)
             .then((result) => {
               console.log(result);
               this.$swal({
@@ -130,7 +130,7 @@ export default {
     },
   },
   created() {
-    this.getTeacherByID();
+    this.getStudentByID();
   },
 };
 </script>
