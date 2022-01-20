@@ -1,6 +1,21 @@
 <template>
   <!-- Thíu số học viên ngày học -->
   <div>
+    <el-row>
+      <el-col :span="24">
+        <el-button-group>
+          <el-button
+            icon="el-icon-circle-plus-outline"
+            type="success"
+            @click="handleAdd"
+            >Add new</el-button
+          >
+          <el-button icon="el-icon-refresh" @click="getAllCourse"
+            >Refresh</el-button
+          >
+        </el-button-group>
+      </el-col>
+    </el-row>
     <el-table :data="courses" style="width: 100%" max-height="520px" border>
       <el-table-column fixed prop="id" label="ID" width="50px" align="center">
       </el-table-column>
@@ -169,6 +184,11 @@ export default {
       this.$router.push({ path: `/menu/course/item/${row.id}` });
     },
 
+      handleAdd(row) {
+      console.log(row.id);
+      this.$router.push({ path: `/menu/course/add` });
+    },
+
     goToList(row) {
       console.log(row.id);
       this.$router.push({ path: `/menu/course/list/${row.id}` });
@@ -180,4 +200,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.el-row {
+  margin-bottom: 20px;
+}
+</style>

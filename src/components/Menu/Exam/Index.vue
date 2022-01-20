@@ -319,4 +319,8 @@ export default {
 .el-select {
   width: 100%;
 }
+
+.el-row {
+  margin-bottom: 20px;
+}
 </style>

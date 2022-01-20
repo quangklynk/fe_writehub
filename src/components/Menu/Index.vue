@@ -18,15 +18,15 @@
       <el-aside width="200px" style="background-color: #fff">
         <el-menu text-color="#171725" active-text-color="#5BA525">
           <el-menu-item index="1">
-            <i class="el-icon-message"></i><span> Dashboard </span>
+            <i class="el-icon-folder"></i><span> Dashboard </span>
           </el-menu-item>
           <router-link to="/menu/post">
             <el-menu-item index="2">
-              <i class="el-icon-message"></i><span> Activity </span>
+              <i class="el-icon-chat-line-square"></i><span> Activity </span>
             </el-menu-item></router-link
           >
           <el-menu-item index="3">
-            <i class="el-icon-message"></i><span> Challenges </span>
+            <i class="el-icon-trophy"></i><span> Challenges </span>
           </el-menu-item>
 
           <el-submenu index="4">
