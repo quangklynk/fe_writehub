@@ -15,6 +15,7 @@ import Menu from "./components/Menu/Index.vue";
 
 // DashBoard
 import DashBoard from "./components/Menu/DashBoard/Index.vue";
+import ShowItem from "./components/Menu/DashBoard/Item.vue";
 
 // Teacher
 import Teacher from "./components/Menu/Teacher/Index.vue";
@@ -75,6 +76,7 @@ const router = new Router({
       children: [
         // DashBoard
         { path: "/menu/", component: DashBoard },
+        { path: "/menu/grade/show/:id", component: ShowItem },
 
         // Teacher
         { path: "/menu/teacher", component: Teacher },

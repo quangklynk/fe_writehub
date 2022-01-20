@@ -1,6 +1,6 @@
 <template>
   <div class="wrap-post">
-        <el-row>
+    <el-row>
       <el-col :span="24">
         <el-button-group>
           <el-button
@@ -16,7 +16,6 @@
       title="Choose your examination to grading"
       :visible.sync="dialogVisible"
       width="40%"
-
       :close-on-press-escape="set_false"
       :show-close="set_false"
     >
@@ -182,14 +181,12 @@ export default {
     },
 
     checkExistExam() {
-      if(this.idExam){
+      if (this.idExam) {
         console.log("idexam: " + this.idExam);
         this.property_post.idExam = this.idExam;
         this.getAllProp2nd();
       }
-
     },
-    
   },
 
   created() {
@@ -198,5 +195,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.el-row {
+  margin-bottom: 20px;
+}
 </style>

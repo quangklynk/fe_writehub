@@ -10,7 +10,7 @@
           <el-dropdown-item>View profile</el-dropdown-item>
           <el-dropdown-item divided>
             <i class="el-icon-error"></i>
-            <span @click="log_out">Log out  </span>
+            <span @click="log_out">Log out </span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -19,18 +19,21 @@
     <el-container>
       <el-aside width="200px" style="background-color: #fff">
         <el-menu text-color="#171725" active-text-color="#5BA525">
-          <el-menu-item index="1">
-            <i class="el-icon-folder"></i><span> Dashboard </span>
-          </el-menu-item>
+          <router-link to="/menu/">
+            <el-menu-item index="1">
+              <i class="el-icon-folder"></i><span> Dashboard </span>
+            </el-menu-item>
+          </router-link>
           <router-link to="/menu/post">
             <el-menu-item index="2">
               <i class="el-icon-chat-line-square"></i><span> Activity </span>
             </el-menu-item></router-link
           >
-          <el-menu-item index="3">
-            <i class="el-icon-trophy"></i><span> Challenges </span>
-          </el-menu-item>
-
+          <router-link to="/menu/grade">
+            <el-menu-item index="3">
+              <i class="el-icon-trophy"></i><span> Grading </span>
+            </el-menu-item>
+          </router-link>
           <el-submenu index="4">
             <template slot="title"
               ><i class="el-icon-setting"></i>Settings</template

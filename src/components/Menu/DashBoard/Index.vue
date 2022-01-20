@@ -7,14 +7,16 @@
       class="set-margin"
     >
       <el-col :span="8" v-for="item1 in item" :key="item1.id">
-        <el-card class="box-card">
+        <el-card class="box-card" @click="handleClick">
           <div slot="header" class="clearfix">
             <span>{{ "Topic: " + item1.category.name }}</span>
             <span class="score">{{ item1.score || "Null" }}</span>
           </div>
           <div>
-            <el-tag type="success">{{ item1.type.name }}</el-tag>
-            <el-tag type="danger"> {{ item1.status.name}}</el-tag>
+            <el-tag type="success" effect="dark">{{ item1.type.name }}</el-tag>
+            <el-tag type="danger" effect="dark">
+              {{ item1.status.name }}</el-tag
+            >
           </div>
           <div class="author">
             <p>Author: {{ item1.student.name }}</p>
@@ -24,6 +26,7 @@
             <p v-else>Null</p>
           </div>
           <div class="text item" v-html="item1.content"></div>
+          <el-button type="text" @click="handleClick(item1.id)">More>></el-button>
         </el-card>
       </el-col>
     </el-row>
@@ -53,11 +56,13 @@ export default {
             temporary = this.posts.slice(i, i + chunk);
             this.display_posts.push(temporary);
           }
-          console.log(this.display_posts);
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+    handleClick(id) {
+      this.$router.push({ path: `/menu/grade/show/${id}` });
     },
   },
   created() {

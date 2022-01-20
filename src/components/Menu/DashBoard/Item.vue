@@ -9,19 +9,25 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="8"
+        <el-col :span="6"
+          >Score :
+          <el-tag effect="dark" type="danger" size="medium">
+            <span class="score"> {{ post.score || "Pending..." }}</span></el-tag
+          >
+        </el-col>
+        <el-col :span="6"
           >Type :
           <el-tag effect="dark" type="success" size="medium">
             {{ post.type.name }}</el-tag
           >
         </el-col>
-        <el-col :span="8"
+        <el-col :span="6"
           >Category :
           <el-tag effect="dark" type="success" size="medium">{{
             post.category.name
           }}</el-tag>
         </el-col>
-        <el-col :span="8"
+        <el-col :span="6" style="text-align: end"
           >Status :
           <el-tag effect="dark" type="success" size="medium">
             {{ post.status.name }}</el-tag
@@ -32,25 +38,6 @@
     <div>
       <p class="main-content" v-html="post.content"></p>
     </div>
-    <div v-if="!post.score">
-      Score:
-      <el-input-number
-        v-model="score"
-        @change="handleChange"
-        :min="0"
-        :max="100"
-        :step="5"
-      ></el-input-number>
-      <el-button
-        type="primary"
-        icon="el-icon-document-checked"
-        size="medium"
-        @click="submitScore()"
-        square
-        style="margin-left: 10px"
-        >Submit score</el-button
-      >
-    </div>
   </div>
 </template>
 
@@ -59,7 +46,6 @@ import axios from "axios";
 export default {
   data() {
     return {
-      score: 0,
       post: {
         category: {
           name: "",
@@ -73,7 +59,6 @@ export default {
       },
     };
   },
-
   methods: {
     getPostByID() {
       axios
@@ -85,38 +70,7 @@ export default {
           console.log(err);
         });
     },
-
-    handleChange(value) {
-      console.log(value);
-    },
-
-    submitScore() {
-      this.post.score = this.score;
-      axios
-        .patch(`post/${this.$route.params.id}`, this.post)
-        .then((result) => {
-          console.log(result);
-          this.$swal({
-            icon: "success",
-            title: "Submit successful",
-            showConfirmButton: false,
-          });
-          this.$store.dispatch("idexam", this.post.idExam);
-          localStorage.setItem("idexam", this.post.idExam);
-
-          this.$router.go(-1);
-        })
-        .catch((err) => {
-          console.log(err);
-          this.$swal({
-            icon: "error",
-            title: err,
-            showConfirmButton: false,
-          });
-        });
-    },
   },
-
   created() {
     this.getPostByID();
   },
@@ -129,5 +83,10 @@ export default {
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+}
+
+.score {
+  font-weight: 700;
+  font-size: 20px;
 }
 </style>
