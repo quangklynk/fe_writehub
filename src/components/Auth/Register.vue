@@ -150,9 +150,19 @@ export default {
             .post("register", this.ruleForm)
             .then((result) => {
               console.log(result);
+              this.$swal({
+                icon: "success",
+                title: "Successful account registration",
+                showConfirmButton: false,
+              });
             })
             .catch((err) => {
               console.log(err);
+              this.$swal({
+                icon: "error",
+                title: err,
+                showConfirmButton: false,
+              });
             });
         } else {
           console.log("error submit!!");

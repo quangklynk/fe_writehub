@@ -13,6 +13,9 @@ import Forgot from "./components/Auth/Forgot.vue";
 // Menu
 import Menu from "./components/Menu/Index.vue";
 
+// DashBoard
+import DashBoard from "./components/Menu/DashBoard/Index.vue";
+
 // Teacher
 import Teacher from "./components/Menu/Teacher/Index.vue";
 import ItemTeacher from "./components/Menu/Teacher/Item.vue";
@@ -68,6 +71,9 @@ const router = new Router({
       path: "/menu",
       component: Menu,
       children: [
+        // DashBoard
+        { path: "/menu/", component: DashBoard },
+
         // Teacher
         { path: "/menu/teacher", component: Teacher },
         { path: "/menu/teacher/:id", component: ItemTeacher },

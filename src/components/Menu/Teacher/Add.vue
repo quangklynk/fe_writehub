@@ -126,7 +126,11 @@ export default {
           axios
             .post("register/teacher", this.ruleForm)
             .then((result) => {
-              console.log(result);
+              this.$swal({
+                icon: "success",
+                title: `Successed ${result}`,
+                showConfirmButton: false,
+              });
             })
             .catch((err) => {
               console.log(err);

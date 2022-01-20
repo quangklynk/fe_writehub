@@ -7,9 +7,11 @@
         >
 
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>View</el-dropdown-item>
-          <el-dropdown-item>Add</el-dropdown-item>
-          <el-dropdown-item>Delete</el-dropdown-item>
+          <el-dropdown-item>View profile</el-dropdown-item>
+          <el-dropdown-item divided>
+            <i class="el-icon-error"></i>
+            <span @click="log_out">Log out  </span>
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </el-header>
@@ -81,9 +83,27 @@ import { mapGetters } from "vuex";
 export default {
   name: "Menu",
   data() {
-    return {};
+    return {
+      show: false,
+    };
   },
-  methods: {},
+  methods: {
+    log_out() {
+      this.$swal({
+        icon: "info",
+        title: "Logged out",
+        showConfirmButton: false,
+      });
+      localStorage.removeItem(`token`);
+      localStorage.removeItem(`id`);
+      localStorage.removeItem(`user`);
+      localStorage.removeItem(`role`);
+      this.$store.dispatch("id", "");
+      this.$store.dispatch("user", "");
+      this.$store.dispatch("role", "");
+      this.$router.push("/");
+    },
+  },
   computed: {
     ...mapGetters(["user"]),
   },
