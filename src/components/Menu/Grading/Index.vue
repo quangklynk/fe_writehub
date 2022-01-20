@@ -40,13 +40,20 @@
     </el-dialog>
 
     <!-- List of Posts for grading -->
-    <el-table :data="exams" style="width: 100%" max-height="100vh" border>
+    <el-table :data="posts" style="width: 100%" max-height="100vh" border>
       <el-table-column fixed prop="id" label="ID" width="50px" align="center">
       </el-table-column>
-      <el-table-column prop="dateExam" label="Exam day"> </el-table-column>
-      <el-table-column prop="course.name" label="Course"></el-table-column>
-      <el-table-column prop="teacher.name" label="Teacher"></el-table-column>
-      <el-table-column prop="duration" label="Duration"></el-table-column>
+      <el-table-column prop="student.name" label="Student"></el-table-column>
+      <el-table-column prop="type.name" label="Type"></el-table-column>
+      <el-table-column prop="category.name" label="Categories">
+        <template slot-scope="scope">
+          <el-tag effect="dark" type="success" size="medium">
+            {{ scope.row.category.name }}</el-tag
+          >
+        </template>
+      </el-table-column>
+      <!-- <el-table-column prop="content" label="Content"></el-table-column> -->
+      <el-table-column prop="status.name" label="Status"></el-table-column>
 
       <el-table-column prop="created_at" label="created_at">
         <template slot-scope="scope">
@@ -64,17 +71,10 @@
         <template slot-scope="scope">
           <el-button
             type="primary"
-            icon="el-icon-edit"
+            icon="el-icon-s-order"
             size="mini"
-            @click="handleEdit(scope.row)"
+            @click="handleGrading(scope.row)"
             square
-          ></el-button>
-          <el-button
-            type="danger"
-            icon="el-icon-delete"
-            size="mini"
-            square
-            @click="deleteRow(scope.$index, exams, scope.row)"
           ></el-button>
         </template>
       </el-table-column>
@@ -86,15 +86,14 @@
 import axios from "axios";
 
 export default {
-  name: "Marking",
+  name: "Grading",
   data() {
     return {
       // 1st stage
       exams: [],
+
       // 2nd stage
       posts: [],
-      type: [],
-      category: [],
 
       dialogVisible: true,
       set_false: false,
@@ -125,7 +124,6 @@ export default {
   },
   methods: {
     getAllProp1st() {
-      // Exam
       axios
         .get(`exam/teacher/${this.idTeacher}`)
         .then((result) => {
@@ -138,25 +136,9 @@ export default {
 
     getAllProp2nd() {
       axios
-        .get(`type`)
+        .get(`post/${this.idTeacher}:${this.property_post.idExam}`)
         .then((result) => {
-          this.data.types = result.data.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      axios
-        .get(`category`)
-        .then((result) => {
-          this.data.categories = result.data.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      axios
-        .get(`status`)
-        .then((result) => {
-          this.data.statuses = result.data.data;
+          this.posts = result.data.data;
         })
         .catch((err) => {
           console.log(err);
@@ -166,12 +148,19 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.dialogVisible = false;
+          this.getAllProp2nd();
         } else {
           console.log("error submit!!");
           return false;
         }
       });
     },
+
+    handleGrading(row) {
+      console.log(row.id);
+      this.$router.push({ path: `/menu/grade/${row.id}` });
+    },
+    
   },
 
   created() {

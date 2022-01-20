@@ -67,7 +67,7 @@ export default {
         email: "",
         password: "",
         name: "",
-        birth: new Date(),
+        birth: "",
         address: "",
         idRole: 2,
       },

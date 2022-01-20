@@ -20,6 +20,7 @@ import AddTeacher from "./components/Menu/Teacher/Add.vue";
 
 // Student
 import Student from "./components/Menu/Student/Index.vue";
+import StudentItem from "./components/Menu/Student/Item.vue";
 
 // Role
 import Role from "./components/Menu/Role/Index.vue";
@@ -48,6 +49,7 @@ import ExamItem from "./components/Menu/Exam/Item.vue";
 
 //Grading
 import Grade from "./components/Menu/Grading/Index.vue";
+import GradeItem from "./components/Menu/Grading/Item.vue";
 
 Vue.use(Router);
 
@@ -75,6 +77,7 @@ const router = new Router({
 
         // Student
         { path: "/menu/student", component: Student },
+        { path: "/menu/student/:id", component: StudentItem },
 
         // Courses
         { path: "/menu/course", component: Courses },
@@ -99,6 +102,7 @@ const router = new Router({
 
         //Grading
         { path: "/menu/grade", component: Grade },
+        { path: "/menu/grade/:id", component: GradeItem },
       ],
     },
 
